@@ -6,7 +6,7 @@ This playbook installs my [amnotbot](https://github.com/gpoppino/amnotbot) fork 
 
 You can run this playbook in the following way after cloning the repo:
 
-`# ansible-playbook -i inventory --ask-vault-pass amnotbot.yml`
+`# ansible-playbook -i inventory amnotbot.yml`
 
 ## Variables
 
