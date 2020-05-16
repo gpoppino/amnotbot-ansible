@@ -1,0 +1,22 @@
+---
+- name: Load RedHat OS variables
+  include_vars:
+    file: redhat_vars.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Load Debian OS family variables
+  include_vars:
+    file: debian_vars.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Install Docker
+  package:
+    name: "{{ docker_package }}"
+    state: latest
+  notify: restart docker
+
+- name: Start Docker
+  service:
+    name: "{{ docker_service }}"
+    state: started
+    enabled: true
