@@ -1,0 +1,5 @@
+---
+- name: Raspbian | Install dependencies
+  package:
+    name: curl
+    state: present

@@ -1,0 +1,13 @@
+---
+
+- include_tasks: dependencies_common.yml
+- include_tasks: docker_setup_main.yml
+
+- name: Pull image and start container
+  docker_container:
+    name: amnotbot
+    image: "{{ amnotbot_image }}"
+    pull: true
+    state: started
+    volumes:
+      - "{{ amnotbot_config_path }}:/home/amnotbot/.amnotbot"

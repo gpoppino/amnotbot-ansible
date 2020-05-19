@@ -1,0 +1,31 @@
+---
+- name: RedHat | Load variables
+  include_vars:
+    file: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Raspbian | Load variables
+  include_vars:
+    file: raspbian.yml
+  when: ansible_os_family == 'Debian' and ansible_lsb['id'] == 'Raspbian'
+
+- name: Common | Include common tasks dependencies
+  include_tasks: dependencies_common.yml
+
+- name: RedHat | Load docker tasks
+  include_tasks: docker_setup_redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Raspbian | Include tasks dependencies
+  include_tasks: dependencies_raspbian.yml
+  when: ansible_os_family == 'Debian' and ansible_lsb['id'] == 'Raspbian'
+
+- name: Raspbian | Load docker tasks
+  include_tasks: docker_setup_raspbian.yml
+  when: ansible_os_family == 'Debian' and ansible_lsb['id'] == 'Raspbian'
+
+- name: Start Docker Service
+  service:
+    name: "{{ docker_service }}"
+    state: started
+    enabled: true

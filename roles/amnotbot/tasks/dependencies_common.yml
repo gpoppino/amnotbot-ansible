@@ -1,0 +1,6 @@
+---
+
+- name: Common | Make sure Python's docker module is installed
+  pip:
+    name: docker
+    state: present

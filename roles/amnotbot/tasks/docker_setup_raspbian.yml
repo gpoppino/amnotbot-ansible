@@ -1,0 +1,23 @@
+---
+- name: Raspbian | Uninstalling old docker packages
+  package:
+    name:
+      - containerd
+      - docker
+      - docker-engine
+      - docker.io
+      - lxc-docker
+      - runc
+    state: absent
+
+- name: Raspbian | Check if we have docker installed
+  shell: dpkg-query -W "{{ docker_package }}"
+  ignore_errors: true
+  register: has_docker
+  changed_when: has_docker.rc != 0
+
+- name: Raspbian | Install docker packages
+  shell: curl -fsSL https://get.docker.com | sh
+  args:
+    warn: false
+  when: has_docker is failed

@@ -1,0 +1,8 @@
+---
+
+- name: Red Hat | Install Docker
+  package:
+    name: "{{ docker_package }}"
+    state: latest
+
+

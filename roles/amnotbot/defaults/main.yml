@@ -1,0 +1,2 @@
+amnotbot_config_path: /home/gpoppino/amnotbot
+amnotbot_image: gpoppino/amnotbot:latest
