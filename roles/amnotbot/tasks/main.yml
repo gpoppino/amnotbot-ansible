@@ -1,6 +1,5 @@
 ---
 
-- include_tasks: dependencies_common.yml
 - include_tasks: docker_setup_main.yml
 
 - name: Pull image and start container
